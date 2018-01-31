@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SC 2017</title>
+
+    {% load staticfiles %}
+    <link href=" {% static 'sc_demo_2017/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href=" {% static 'sc_demo_2017/css/simple-sidebar.css' %}" rel="stylesheet">
+    <link href=" {% static 'sc_demo_2017/css/font.css' %}" rel="stylesheet">
+    <link href=" {% static 'sc_demo_2017/css/font-awesome.css' %}" rel="stylesheet">
+    <link href=" {% static 'sc_demo_2017/css/jquery-ui.css' %}" rel="stylesheet">
+    <link href=" {% static 'sc_demo_2017/css/dash_style.css' %}" rel="stylesheet">
+    <link href=" {% static 'sc_demo_2017/css/dash_style_2.css' %}" rel="stylesheet">
+
+</head>
+<body class="mybody">
+    <div id="wrapper">
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+
+                <div id="row_1" class="row" style="">
+                    <div class="col-xs-12 cutout_head box_shadow_shift4" style="margin-top:0px;">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <div id="slider" class="myslider"></div>
+                                <h1 class="myheadings myfont" style="margin-top: 15px;">Persistent Memory Accelerates IOPs</h1>
+                                <p class="myheadings myfont "><i>Brought to you by</i></p>
+                            </div>
+                            <div class="col-xs-2 col-xs-offset-0" style="text-align:center;">
+                                <!--<img src="{% static 'sc_demo_2017/img/white-logo.png' %}" alt="micron" style="width:200px;height:60px;margin-top:17px;">-->
+                                <img src="{% static 'sc_demo_2017/img/micron_icon.png' %}" alt="micron" style="width:220px;margin-bottom: -40px; margin-top: -20px;">
+
+                            </div>
+                            <div class="col-xs-2"  style="text-align:center;">
+                                <img src="{% static 'sc_demo_2017/img/enmotus_logo_GrayLetter-on-ClearBackground.png' %}" alt="enmotus" style="width:210px;height:35px;margin-top: 32px;">
+                            </div>
+                            <div class="col-xs-2" style="text-align:center;">
+                                <img src="{% static 'sc_demo_2017/img/dell_icon.png' %}" alt="dell" style="width:200px;height:30px;margin-top:33px;">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="row_2" class="row" style="">
+                    <div class="col-xs-6 cutout_med box_shadow_shift2" style="margin-top:0px;">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h3 class="myheadings myfont">FuzeDrive (NVDIMM)</h3>
+                                <h4 class="myfont para_style">
+                                    Is a technology developed by Enmotus. Their software identifies the active data set of applications and
+                                    dynamically allocates the appropriate storage resources in order to optimize performance.
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6 cutout_med box_shadow_shift2" style="margin-top:0px;">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h3 class="myheadings myfont">Micron</h3>
+                                <h4 class="myfont para_style">
+                                Is using the Enmotus software, NVDIMM, and NVMe to give you the highest density, fastest storage solution.
+                                The FuzeDrive is made up of 192GB of NVDIMM and 1.6TB of NVMe.
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="row_3" class="row" style="">
+                    <div class="col-xs-6 cutout_large box_shadow_shift_large" style="margin-top:0px;">
+                        <div id="left_chart"></div>
+                    </div>
+
+                    <div class="col-xs-6 cutout_large box_shadow_shift_large" style="margin-top:0px;">
+                         <button type="button" class="btn" onclick="requestData()" style="position: absolute; z-index:100;">Basic</button>
+                        <div id="right_chart"></div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+{% load staticfiles %}
+<script src=" {% static 'sc_demo_2017/js/jquery-1.10.1.js' %}" rel="stylesheet"></script>
+<script src=" {% static 'sc_demo_2017/js/highcharts.js' %}" rel="stylesheet"></script>
+<script src=" {% static 'sc_demo_2017/js/bootstrap.min.js' %}" rel="stylesheet"></script>
+<script src=" {% static 'sc_demo_2017/js/jquery-ui.js' %}" rel="stylesheet"></script>
+<script src=" {% static 'sc_demo_2017/js/exporting.js' %}" rel="stylesheet"></script>
+<script src=" {% static 'sc_demo_2017/js/annotations.js' %}" rel="stylesheet"></script>
+
+<script src=" {% static 'sc_demo_2017/js/new_demo_stacked.js' %}" rel="stylesheet"></script>
+<script src=" {% static 'sc_demo_2017/js/new_demo_spline.js' %}" rel="stylesheet"></script>
+
+<script>
+var chart;
+$(document).ready(function() {
+    chart = spline_chart();
+    var height  = $( document ).height() - ($("#row_1").height() + $("#row_2").height());
+    $("#row_3").css("height",height-40);
+    $("#left_chart").css("height",height*.99-40);
+    $("#right_chart").css("height",height*.99-40);
+
+});
+
+function requestData() {
+    url_base = "{% url 'sc_demo_2017:get_data_2' %}";
+    $.ajax({
+        type: 'GET',
+        url: url_base,
+        success: function(msg) {
+            console.log(msg.val)
+            change_screen_based_on_value(msg.val[1]);
+            var series = chart.series[0], shift = series.data.length > 60;
+            chart.series[0].addPoint(msg.val, false, shift);
+            chart.redraw();
+            if(msg.val[0]<=59){
+                setTimeout(requestData, 500);
+            }
+        }
+    });
+}
+
+function change_screen_based_on_value(value){
+    if (value < 8){
+        $( "#chart_right_comment" ).text("Database Query to: SSD")
+        change_bar_color(0);
+    }
+    else if (value>=8 && value <12){
+        console.log("NVME")
+        $( "#chart_right_comment" ).text("Database Query to: NVME")
+        change_bar_color(1);
+    }
+    else if (value >=12){
+        console.log("NVDIMM")
+        $( "#chart_right_comment" ).text("Database Query to: NVDIMM")
+        change_bar_color(2);
+    }
+}
+function change_bar_color(index){
+    var series = $("#left_chart").highcharts().series[2];
+    $.each(series.data, function(i, point) {
+        if (i === index){
+            point.color = "#629D37";
+        }
+        else{
+            point.color = "transparent"
+        }
+    });
+    series.redraw();
+}
+
+
+</script>
+
+</body>
+</html>

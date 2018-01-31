@@ -1,0 +1,29 @@
+.cutout_large{
+    border: 1px solid #2C2C2E;
+    background: white;
+    border-radius: 5px;
+}
+
+.box_shadow_shift_large {
+    box-shadow: -3px -3px #2C2C2E;
+    width: 47.5%;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-bottom: 0%;
+}
+
+
+.myheadings{
+    color: #2C2C2E;
+    letter-spacing: 1px;
+    text-shadow: .5px 0px #58595B;
+    font-weight: bold;
+}
+
+.para_style{
+    display: inline;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #2C2C2E;
+    letter-spacing: 1px;
+    text-shadow: .5px 0px #58595B;
+}

@@ -21,3 +21,5 @@ sudo ecmd --create vdrive /dev/nvme0n1
 sudo ecmd --create vdrive0 vdrive1
 sudo ecmd --stats off t=0
 python /home/micron/Documents/micron_apps/manage.py runserver
+
+

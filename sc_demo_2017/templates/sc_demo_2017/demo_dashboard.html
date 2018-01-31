@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SC 2017</title>
+
+    {% load staticfiles %}
+    <link href=" {% static 'sc_demo_2017/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href=" {% static 'sc_demo_2017/css/simple-sidebar.css' %}" rel="stylesheet">
+    <link href=" {% static 'sc_demo_2017/css/font.css' %}" rel="stylesheet">
+    <link href=" {% static 'sc_demo_2017/css/font-awesome.css' %}" rel="stylesheet">
+    <link href=" {% static 'sc_demo_2017/css/jquery-ui.css' %}" rel="stylesheet">
+    <link href=" {% static 'sc_demo_2017/css/dash_style.css' %}" rel="stylesheet">
+
+</head>
+<body class="mybody">
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <!--<div id="sidebar-wrapper">-->
+            <!--<div class="row">-->
+                <!--<div class="col-xs-12">-->
+                    <!--<h3 class="mywrapper_header centered">Options</h3>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="row">-->
+                <!--<div class="col-xs-10 col-xs-offset-1">-->
+                    <!--<button type="button" class="btn btn-success mybutton centered" >Write</button>-->
+                    <!--<button type="button" class="btn btn-success mybutton centered" >Read</button>-->
+                    <!--<button type="button" class="btn btn-success mybutton centered" >Read 75%, Write 25%</button>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!-- /#sidebar-wrapper -->
+        <!--<a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle"><i class="fa fa-sliders fa-3" aria-hidden="true" style="color: #9A9B9DB"></i></a>-->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+
+                <div id="row1" class="row" style="">
+                    <div class="col-xs-12 cutout_head box_shadow_shift4" style="margin-top:0px;">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <div id="slider" class="myslider"></div>
+                                <h2 class="myheadings myfont" style="margin-top: 15px;">Persistent Memory Accelerates IOPs</h2>
+                                <p class="myheadings myfont "><i>Brought to you by</i></p>
+                            </div>
+                            <div class="col-xs-2 col-xs-offset-0" style="text-align:center;">
+                                <!--<img src="{% static 'sc_demo_2017/img/white-logo.png' %}" alt="micron" style="width:200px;height:60px;margin-top:17px;">-->
+                                <img src="{% static 'sc_demo_2017/img/micron_icon.png' %}" alt="micron" style="width:220px;margin-bottom: -40px; margin-top: -20px;">
+
+                            </div>
+                            <div class="col-xs-2"  style="text-align:center;">
+                                <img src="{% static 'sc_demo_2017/img/enmotus_logo_GrayLetter-on-ClearBackground.png' %}" alt="enmotus" style="width:210px;height:35px;margin-top: 32px;">
+                            </div>
+                            <div class="col-xs-2" style="text-align:center;">
+                                <img src="{% static 'sc_demo_2017/img/dell_icon.png' %}" alt="dell" style="width:200px;height:30px;margin-top:33px;">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div id="row2" class="row" style="">
+                    <div class="col-xs-6 cutout_med box_shadow_shift2" style="margin-top:0px;">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h3 class="myheadings myfont">FuzeDrive (NVDIMM)</h3>
+                                <h4 class="myfont para_style">
+                                    Is a technology developed by Enmotus. Their software identifies the active data set of applications and
+                                    dynamically allocates the appropriate storage resources in order to optimize performance.
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6 cutout_med box_shadow_shift2" style="margin-top:0px;">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h3 class="myheadings myfont">Micron</h3>
+                                <h4 class="myfont para_style">
+                                Is using the Enmotus software, NVDIMM, and NVMe to give you the highest density, fastest storage solution.
+                                The FuzeDrive is made up of 192GB of NVDIMM and 1.6TB of NVMe.
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div id="row3" class="row" style="">
+                    <div class="col-xs-12 cutout_small" style="margin-top:0px;margin-bottom: 10px;">
+                        <div class="row">
+                            <div class="col-xs-3 centered"><button type="button" class="btn btn-primary centered sel_button" id="fio_read" onclick="change_fio('fio_read')">Random 4k Reads</button> <i class="fa fa-info-circle fa-2x" aria-hidden="true" style="" onclick="open_info('number_1')"></i></div>
+                            <div class="col-xs-3 centered"><button type="button" class="btn btn-primary centered my_button" id="fio_write" onclick="change_fio('fio_write')">Random 4k Writes</button><i class="fa fa-info-circle fa-2x info_icon" aria-hidden="true" style="" onclick="open_info('number_2')"></i></div>
+                            <div class="col-xs-3 centered"><button type="button" class="btn btn-primary centered my_button" id="fio_read_128" onclick="change_fio('fio_read_128')">Random 128k Reads</button><i class="fa fa-info-circle fa-2x info_icon" aria-hidden="true" style="" onclick="open_info('number_3')"></i></div>
+                            <div class="col-xs-3 centered"><button type="button" class="btn btn-primary centered my_button" id="fio_write_128" onclick="change_fio('fio_write_128')">Random 128k Writes</button><i class="fa fa-info-circle fa-2x info_icon" aria-hidden="true" style="" onclick="open_info('number_4')"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="">
+                    <div class="popup display_no">
+                        <div class="row" style="">
+                            <div class="col-xs-12">
+                                <i class="fa fa-times-circle fa-3x" aria-hidden="true" style="" onclick="close_info()"></i>
+                            </div>
+                        </div>
+                        <div class="row" style="">
+                            <div class="col-xs-12" id="fio_info">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--<div class="row">-->
+                    <!--<div class="col-xs-2 centered cutout">-->
+                        <!--<h3 class="myheadings myfont">Write Latency</h3>-->
+                        <!--<p class="myheadings myfont"><i>(Lower is better)</i></p>-->
+                    <!--</div>-->
+                    <!--<div class="col-xs-4 col-xs-offset-3 centered cutout">-->
+                        <!--<h3 class="myheadings myfont">Write IOPS</h3>-->
+                        <!--<p class="myheadings myfont"><i>(Higher is better)</i></p>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<br>-->
+
+
+                <div id="row4" class="row">
+                    <div class="col-xs-3 cutout box_shadow_shift1">
+                        <h3 id="stacked_row_title" class="myheadings myfont ">Latency</h3>
+                        <p id="stacked_row_para" class="myheadings myfont " style="margin-bottom: -15px; "><i>(Lower is better)</i></p>
+                        <br>
+                        <div id="stacked_row_data" class="row">
+                            <div class="col-xs-6">
+                                <h4 class=" myheadings myfont">FuzeDrive</h4>
+                                <p class="myheadings myfont "><i>(NVDIMM)</i></p>
+                            </div>
+                            <div class="col-xs-6">
+                                <h4 class=" myheadings myfont">NVMe</h4>
+                            </div>
+                        </div>
+                        <div id="stacked_row" class="row" style="margin-bottom: 11px;">
+                            <div class="col-xs-6">
+                                <div id="container_stack1" style="height: 75%; width: 100%;"></div>
+                                <div class=""><h3 class="myheadings myfont spark_label" id="lat_1_value" style="color: rgba(98, 157, 55, .75);"></h3></div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div id="container_stack2" style="height: 250px; width: 100%;"></div>
+                                <div class=""><h3 class="myheadings myfont spark_label" id="lat_2_value" style="color: rgb(238,118,35);"></h3></div>
+                            </div>
+                        </div>
+
+                        <!--<div class="row" style="height:20px;">-->
+                            <!--<div class="col-xs-12">-->
+                                    <!--<h4 class="centered myheadings myfont">NVDIMM</h4>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="row" style="height:130px;">-->
+                            <!--<div class="col-xs-12">-->
+                                <!--<div id="container_spark1" style="height: 140px; width: 100%;"></div>-->
+                                <!--<div class=""><h3 class="myheadings myfont spark_label" id="lat_1_value" style="color: rgba(98, 157, 55, .75);"></h3></div>-->
+                                <!--&lt;!&ndash;<div class="square1 centered"><p class="centered myheadings myfont nvdimm_lat" style="font-size: 30px; padding-top: 30px; padding-bottom: 30px;">22µs</p></div>&ndash;&gt;-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                        <!--<div class="row" style="height:20px;">-->
+                            <!--<div class="col-xs-12">-->
+                                    <!--<h4 class="centered myheadings myfont">NVMe</h4>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="row" style="height:130px;">-->
+                            <!--<div class="col-xs-12">-->
+                                <!--<div id="container_spark2" style="height: 140px; width: 100%;"></div>-->
+                                <!--<div class=""><h3 class="myheadings myfont spark_label" id="lat_2_value" style="color: rgb(0,167,224);"></h3></div>-->
+                                <!--&lt;!&ndash;<div class="square1 centered"><p class="centered myheadings myfont nvdimm_lat" style="font-size: 30px; padding-top: 30px; padding-bottom: 30px;">22µs</p></div>&ndash;&gt;-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+
+                        <!--<div class="row">-->
+                            <!--<div class="col-xs-12">-->
+                                    <!--<h4 class="centered myheadings myfont" style="margin-top: 18px;">NVMe</h4>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="row">-->
+                            <!--<div class="col-xs-12">-->
+                                <!--<div class="square2 centered"><p class="centered myheadings myfont NVMe_lat" style="font-size: 30px; padding-top: 30px; padding-bottom: 30px;">267µs</p></div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    </div>
+
+                    <div class="col-xs-7 cutout box_shadow_shift6" style="border-right: 0px solid #58595B; border-bottom-right-radius: 0px; border-top-right-radius: 0px;">
+                        <h3 id="spline_title" class="myheadings myfont">IOPS</h3>
+                        <p class="myheadings myfont"><i>(Higher is better)</i></p>
+                        <br>
+                        <div id="container" style="width: 100%; height: 300px; margin: 0 auto;"></div>
+                    </div>
+                    <div class="col-xs-2 cutout box_shadow_shift5" style="border-left: 0px solid #58595B; border-bottom-left-radius: 0px; border-top-left-radius: 0px;">
+                        <!--<h3 class="myheadings myfont" style="opacity: 0.0;">opacity</h3>-->
+                        <!--<p class="myheadings myfont" style="opacity: 0.0; margin-bottom: -60px;"><i>opacity 0</i></p>-->
+                        <br>
+                        <div id="row_pie_1" class="row" style="margin-top:-5px;">
+                            <div class="col-xs-12" style="margin-bottom: -50px;">
+                                    <h3 id="shift_down_heading_1" class="centered myheadings myfont" style="">FuzeDrive</h3>
+                                    <p class="myheadings myfont centered" style=""><i>(NVDIMM)</i></p>
+                                    <div class="nvdimm_write_text centered">
+                                        <div id="pie_nvdimm_write" style="width: 210px; height: 185px; margin: 0 auto; margin-top:-30px"></div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div id="row_pie_2" class="row">
+                            <div class="col-xs-12" style="margin-bottom: -50px;">
+                                    <h3 id="shift_down_heading_2" class="centered myheadings myfont" style="">NVMe</h3>
+                                    <div class="NVMe_write_text centered">
+                                        <div id="pie_NVMe_write" style="width: 210px; height: 185px; margin: 0 auto; margin-top:-30px"></div>
+                                    </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--<div class="row">-->
+                     <!--<div class="col-xs-6 cutout_table">-->
+                        <!--<div class="row">-->
+                            <!--<div class="col-xs-6">-->
+                                 <!--<h3 class="myheadings myfont">NVDIMM + NVMe Benchmark</h3>-->
+                            <!--</div>-->
+                            <!--<div class="col-xs-6">-->
+                                <!--<div class="density_ind_1 myheadings myfont centered">192GB</div>-->
+                                <!--<div class="density_ind_2 myheadings myfont centered">500GB</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                          <!--<div class="row">-->
+                            <!--<div class="col-xs-6">-->
+                                <!--<div class="row">-->
+                                   <!--<h3 class="myheadings myfont centered"><i class="fa fa-bar-chart fa-1x" style="color: rgb(98, 157, 55);" aria-hidden="true"></i><span style="margin-left:10px;">4k Write</span></h3>-->
+                                   <!--<table style="width:100%">-->
+                                      <!--<tr>-->
+                                        <!--<th><h4 class="myheadings myfont centered">IOPs</h4></th>-->
+                                        <!--<th><h4 class="myheadings myfont centered">1,200,000</h4></th>-->
+                                      <!--</tr>-->
+                                     <!--<tr>-->
+                                        <!--<th><h4 class="myheadings myfont centered">BW</h4></th>-->
+                                        <!--<th><h4 class="myheadings myfont centered">4.3 GBps</h4></th>-->
+                                      <!--</tr>-->
+                                      <!--<tr>-->
+                                        <!--<th><h4 class="myheadings myfont centered">Latency</h4></th>-->
+                                        <!--<th><h4 class="myheadings myfont centered">229µs</h4></th>-->
+                                      <!--</tr>-->
+                                   <!--</table>-->
+
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <!--<div class="centered vert_line centered" style="left:50%;"></div>-->
+                            <!--<div class="col-xs-6">-->
+                                <!--<div class="row">-->
+                                    <!--<h3 class="myheadings myfont centered"><i class="fa fa-bar-chart fa-1x" style="color: rgb(98, 157, 55);" aria-hidden="true"></i><span style="margin-left:10px;">4K Read</span></h3>-->
+                                    <!--<table style="width:100%">-->
+                                      <!--<tr>-->
+                                        <!--<th><h4 class="myheadings myfont centered">IOPs</h4></th>-->
+                                        <!--<th><h4 class="myheadings myfont centered">1,800,000</h4></th>-->
+                                      <!--</tr>-->
+                                     <!--<tr>-->
+                                        <!--<th><h4 class="myheadings myfont centered">BW</h4></th>-->
+                                        <!--<th><h4 class="myheadings myfont centered">7 GBps</h4></th>-->
+                                      <!--</tr>-->
+                                      <!--<tr>-->
+                                        <!--<th><h4 class="myheadings myfont centered">Latency</h4></th>-->
+                                        <!--<th><h4 class="myheadings myfont centered">150µs</h4></th>-->
+                                      <!--</tr>-->
+                                   <!--</table>-->
+
+                                <!--</div>-->
+                            <!--</div>-->
+                              <!---->
+                         <!--</div>-->
+                     <!--</div>-->
+
+
+                     <!--<div class="col-xs-6 cutout_table">-->
+                        <!--<div class="row">-->
+                            <!--<div class="col-xs-6">-->
+                                 <!--<h3 class="myheadings myfont">NVMe Benchmark</h3>-->
+                            <!--</div>-->
+                            <!--<div class="col-xs-6">-->
+                                <!--<div class="density_ind_3 myheadings myfont centered">900GB</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                           <!--<div class="row">-->
+                            <!--<div class="col-xs-6">-->
+                                <!--<div class="row">-->
+                                   <!--<h3 class="myheadings myfont centered"><i class="fa fa-bar-chart fa-1x" style="color: rgb(98, 157, 55);" aria-hidden="true"></i><span style="margin-left:10px;">4k Write</span></h3>-->
+                                   <!--<table style="width:100%">-->
+                                      <!--<tr>-->
+                                        <!--<th><h4 class="myheadings myfont centered">IOPs</h4></th>-->
+                                        <!--<th><h4 class="myheadings myfont centered">300,000</h4></th>-->
+                                      <!--</tr>-->
+                                     <!--<tr>-->
+                                        <!--<th><h4 class="myheadings myfont centered">BW</h4></th>-->
+                                        <!--<th><h4 class="myheadings myfont centered">1.1 GBps</h4></th>-->
+                                      <!--</tr>-->
+                                      <!--<tr>-->
+                                        <!--<th><h4 class="myheadings myfont centered">Latency</h4></th>-->
+                                        <!--<th><h4 class="myheadings myfont centered">500µs</h4></th>-->
+                                      <!--</tr>-->
+                                   <!--</table>-->
+
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <!--<div class="centered vert_line centered" style="left:50%;"></div>-->
+                            <!--<div class="col-xs-6">-->
+                                <!--<div class="row">-->
+                                    <!--<h3 class="myheadings myfont centered"><i class="fa fa-bar-chart fa-1x" style="color: rgb(98, 157, 55);" aria-hidden="true"></i><span style="margin-left:10px;">4K Read</span></h3>-->
+                                    <!--<table style="width:100%">-->
+                                      <!--<tr>-->
+                                        <!--<th><h4 class="myheadings myfont centered">IOPs</h4></th>-->
+                                        <!--<th><h4 class="myheadings myfont centered">775,000</h4></th>-->
+                                      <!--</tr>-->
+                                     <!--<tr>-->
+                                        <!--<th><h4 class="myheadings myfont centered">BW</h4></th>-->
+                                        <!--<th><h4 class="myheadings myfont centered">3 GBps</h4></th>-->
+                                      <!--</tr>-->
+                                      <!--<tr>-->
+                                        <!--<th><h4 class="myheadings myfont centered">Latency</h4></th>-->
+                                        <!--<th><h4 class="myheadings myfont centered">350µs</h4></th>-->
+                                      <!--</tr>-->
+                                   <!--</table>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                         <!--</div>-->
+                     <!--</div>-->
+                <!--</div>-->
+
+                <div id="row5" class="row">
+
+                     <div class="col-xs-4 cutout_table box_shadow_shift3" style="background: white;">
+                         <h3 class="myheadings myfont ">Average Latency</h3>
+                        <div class="row">
+                            <div class="col-xs-5">
+                                 <h4  class="myheadings myfont centered">FuzeDrive (NVDIMM)</h4>
+                                <br>
+                                 <h2 id="nvdimm_lat" class="myheadings myfont centered"></h2>
+                            </div>
+
+                            <div class="centered vert_line centered" style="left:41%;"></div>
+
+                            <div class="col-xs-2">
+                                 <h4 class="myheadings myfont centered">vs.</h4>
+                                <br>
+                                 <h3 id="lat_ratio" class="myheadings myfont centered" style="font-size: 20px;"></h3>
+                            </div>
+
+                            <div class="centered vert_line centered" style="left:58%;"></div>
+
+                            <div class="col-xs-5">
+                                 <h4 class="myheadings myfont centered">NVMe</h4>
+                                <br>
+                                <h2 id="nvme_lat" class="myheadings myfont centered"></h2>
+                            </div>
+                        </div>
+                     </div>
+
+                     <div class="col-xs-4 cutout_table box_shadow_shift3" style="background: white;">
+                         <h3 class="myheadings myfont ">Average Bandwidth</h3>
+                        <div class="row">
+                            <div class="col-xs-5">
+                                 <h4  class="myheadings myfont centered">FuzeDrive (NVDIMM)</h4>
+                                <br>
+                                 <h2 id="nvdimm_bw" class="myheadings myfont centered"></h2>
+                            </div>
+
+                            <div class="centered vert_line centered" style="left:41%;"></div>
+
+                            <div class="col-xs-2">
+                                 <h4 class="myheadings myfont centered">vs.</h4>
+                                <br>
+                                 <h3 id="bw_ratio" class="myheadings myfont centered" style="font-size: 20px;"></h3>
+                            </div>
+
+                            <div class="centered vert_line centered" style="left:58%;"></div>
+
+                            <div class="col-xs-5">
+                                 <h4 class="myheadings myfont centered">NVMe</h4>
+                                <br>
+                                 <h2 id="nvme_bw" class="myheadings myfont centered"></h2>
+                            </div>
+                        </div>
+                     </div>
+
+                     <div class="col-xs-4 cutout_table box_shadow_shift3" style="background: white;">
+                         <h3 class="myheadings myfont ">Average IOPS</h3>
+                        <div class="row">
+                            <div class="col-xs-5">
+                                 <h4 class="myheadings myfont centered">FuzeDrive (NVDIMM)</h4>
+                                <br>
+                                 <h2 id="nvdimm_iops" class="myheadings myfont centered"></h2>
+                            </div>
+
+                            <div class="centered vert_line centered" style="left:41%;"></div>
+
+                            <div class="col-xs-2">
+                                 <h4 class="myheadings myfont centered">vs.</h4>
+                                <br>
+                                 <h3 id="iops_ratio" class="myheadings myfont centered" style="font-size: 20px;"></h3>
+                            </div>
+
+                            <div class="centered vert_line centered" style="left:58%;"></div>
+
+                            <div class="col-xs-5">
+                                 <h4 class="myheadings myfont centered">NVMe</h4>
+                                <br>
+                                 <h2 id="nvme_iops" class="myheadings myfont centered"></h2>
+                            </div>
+                        </div>
+                     </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+{% load staticfiles %}
+<script src=" {% static 'sc_demo_2017/js/jquery-1.10.1.js' %}" rel="stylesheet"></script>
+<script src=" {% static 'sc_demo_2017/js/highcharts.js' %}" rel="stylesheet"></script>
+<script src=" {% static 'sc_demo_2017/js/bootstrap.min.js' %}" rel="stylesheet"></script>
+<script src=" {% static 'sc_demo_2017/js/jquery-ui.js' %}" rel="stylesheet"></script>
+
+<script src=" {% static 'sc_demo_2017/js/stack_chart.js' %}" rel="stylesheet"></script>
+<script src=" {% static 'sc_demo_2017/js/speedometer.js' %}" rel="stylesheet"></script>
+<script src=" {% static 'sc_demo_2017/js/spline_chart.js' %}" rel="stylesheet"></script>
+
+<script>
+var chart;
+var container_stack1;
+var container_stack2;
+var pie_nvdimm_write;
+var pie_NVMe_write;
+
+var present_iops = true;
+
+/**
+ *Change Fio command file.
+ */
+function change_fio(name){
+    url_base = "{% url 'sc_demo_2017:new_fio' %}";
+    params = {'fio': name}
+    url = url_base +"?"+$.param(params);
+    $.ajax({
+        type: 'GET',
+        url: url,
+        success: function(msg) {
+            $("#fio_read").removeClass("sel_button");
+            $("#fio_write").removeClass("sel_button");
+            $("#fio_read_128").removeClass("sel_button");
+            $("#fio_write_128").removeClass("sel_button");
+
+            $("#fio_read").addClass("my_button");
+            $("#fio_write").addClass("my_button");
+            $("#fio_read_128").addClass("my_button");
+            $("#fio_write_128").addClass("my_button");
+
+            $("#"+name).removeClass("my_button");
+            $("#"+name).addClass("sel_button");
+        }
+    })
+
+}
+var counter = 1;
+var avg_nvme_lat = 0;
+var avg_nvme_bw = 0;
+var avg_nvme_iops = 0;
+var avg_nvdimm_lat = 0;
+var avg_nvdimm_bw = 0;
+var avg_nvdimm_iops = 0;
+var arr = []
+
+/**
+ * Request data from the server, add it to the graph and set a timeout
+ * to request again
+ */
+function requestData() {
+    url_base = "{% url 'sc_demo_2017:get_data' %}";
+    $.ajax({
+        type: 'GET',
+        url: url_base,
+        success: function(msg) {
+
+            var main_data_nvme;
+            var main_data_nvdimm;
+
+            if (present_iops === true){
+                main_data_nvme = msg.nvme_iops;
+                main_data_nvdimm = msg.nvdimm_iops;
+                $("#spline_title").text("IOPS")
+            }
+
+            //Spline
+            var series = chart.series[0], shift = series.data.length > 40;
+            chart.series[0].addPoint(main_data_nvdimm, false, shift);
+            chart.series[1].addPoint(main_data_nvme, false, shift);
+
+
+            max = main_data_nvdimm[1]*1.1;
+            nvdimm_write_value = (main_data_nvdimm[1]/max)*100;
+            NVMe_write_value = (main_data_nvme[1]/max)*100;
+
+            pie_nvdimm_write.series[0].data[0].update(nvdimm_write_value);
+            pie_nvdimm_write.series[0].data[1].update(100-nvdimm_write_value);
+            pie_nvdimm_write.setTitle({text: numberWithCommas(main_data_nvdimm[1])+""});
+
+            pie_NVMe_write.series[0].data[0].update(NVMe_write_value);
+            pie_NVMe_write.series[0].data[1].update(100-NVMe_write_value);
+            pie_NVMe_write.setTitle({text: numberWithCommas(main_data_nvme[1])+""});
+
+
+            //Latency
+            container_stack1.series[0].setData([msg.nvdimm_lat]);
+            container_stack2.series[0].setData([msg.nvme_lat]);
+            container_stack1.yAxis[0].max=(msg.nvme_lat*1.2);
+            container_stack2.yAxis[0].max=(msg.nvme_lat*1.2);
+            container_stack1.redraw()
+            container_stack2.redraw()
+
+            $("#lat_1_value").html(msg.nvdimm_lat+"µs");
+            $("#lat_2_value").html(msg.nvme_lat+"µs");
+
+
+            chart.redraw();
+
+
+            //var series_spark1 = spark1.series[0], shift = series_spark1.data.length > 15;
+            //spark1.series[0].addPoint(msg.arr3, false, shift);
+
+            //var series_spark2 = spark2.series[0], shift = series_spark2.data.length > 15;
+            //spark2.series[0].addPoint(msg.arr4, false, shift);
+
+
+            //$('.square1').css("animation-duration",".5s");
+            //$('.square2').css("animation-duration","3s");
+
+            //$(".nvdimm_write_value").html(msg.arr[1]+" MBps")
+            //$(".NVMe_write_value").html(msg.arr2[1]+" MBps")
+
+            //spark1.redraw();
+            //spark2.redraw();
+
+            // For average and table display.
+            sample_rate=10;
+            if (counter===sample_rate){
+                $("#nvme_lat").text(numberWithCommas(String(parseInt(avg_nvme_lat/sample_rate)))+"µs");
+                $("#nvme_bw").text((String((avg_nvme_bw/15).toFixed(1)))+"GBps");
+                $("#nvme_iops").text(numberWithCommas(String(parseInt(avg_nvme_iops/sample_rate)))+"");
+
+                $("#nvdimm_lat").text(numberWithCommas(String(parseInt(avg_nvdimm_lat/sample_rate)))+"µs");
+                $("#nvdimm_bw").text((String((avg_nvdimm_bw/15).toFixed(1)))+"GBps");
+                $("#nvdimm_iops").text(numberWithCommas(String(parseInt(avg_nvdimm_iops/sample_rate)))+"");
+
+
+                $("#lat_ratio").text((((avg_nvdimm_lat/15)/(avg_nvme_lat/15)).toFixed(1))+"X");
+                $("#bw_ratio").text(String(((avg_nvdimm_bw/15)/(avg_nvme_bw/15)).toFixed(1))+"X");
+                $("#iops_ratio").text((((avg_nvdimm_iops/15)/(avg_nvme_iops/15)).toFixed(1))+"X");
+
+                counter = 0;
+                avg_nvme_lat = 0;
+                avg_nvme_bw = 0;
+                avg_nvme_iops = 0;
+
+                avg_nvdimm_lat = 0;
+                avg_nvdimm_bw = 0;
+                avg_nvdimm_iops = 0;
+            }
+
+            avg_nvme_lat = avg_nvme_lat+msg.nvme_lat;
+            avg_nvme_bw = avg_nvme_bw + parseFloat(msg.nvme_bw);
+            avg_nvme_iops = avg_nvme_iops+msg.nvme_iops[1];
+
+            avg_nvdimm_lat = avg_nvdimm_lat+msg.nvdimm_lat;
+            avg_nvdimm_bw = avg_nvdimm_bw + parseFloat(msg.nvdimm_bw);
+            avg_nvdimm_iops = avg_nvdimm_iops+msg.nvdimm_iops[1];
+
+
+            counter = counter + 1;
+            setTimeout(requestData, 1700);
+        }
+    });
+}
+
+var para_counter=0;
+var prev=0;
+var para1 = "Is a technology developed by Enmotus. Their software identifies the active data set of applications and dynamically allocates the appropriate storage resources in order to optimize performance.";
+var word_arr_1 = para1.split(" ");
+var element_arr_1 = [];
+
+/**
+ * Setting things up.
+ */
+$(document).ready(function() {
+    <!--for(i =0; i<word_arr_1.length; i++){-->
+        <!--$(".para1").append("<h4 class='myheading myfont para_style'>"+word_arr_1[i]+" </h4>")-->
+    <!--}-->
+
+    <!--$('h4', $(".para1")).each(function(){-->
+        <!--element_arr_1.push(this)-->
+    <!--});-->
+
+    var height  = ($( document ).height() - ($("#row1").height() + $("#row2").height() + $("#row3").height() + $("#row5").height()))-60;
+    $( '#row4' ).css("height",height);
+    var new_height = height - ($("#stacked_row_title").height() + $("#stacked_row_para").height() + $("#stacked_row_data").height() );
+    $( '#container_stack1' ).css("height",new_height-100);
+    $( '#container_stack2' ).css("height",new_height-100);
+    $( '#container' ).css("height",new_height-100);
+
+    $( '#row_pie_1' ).css("height",height/2);
+    $( '#row_pie_2' ).css("height",height/2);
+
+
+id="row_pie_1"
+
+
+    chart = spline_chart();
+
+    pie_nvdimm_write = speedometer_chart('pie_nvdimm_write',"rgba(98, 157, 55,.80)","rgb(98, 157, 55)");
+    pie_NVMe_write = speedometer_chart('pie_NVMe_write',"rgba(238,118,35,.80)","rgb(238,118,35)");
+
+    container_stack1 = stack_chart(["rgba(98, 157, 55,.80)"],"rgb(98, 157, 55)",'container_stack1', '',[{data: [5]}, {data: [2]}, {data: [3]}]);
+    container_stack2 = stack_chart(["rgba(238,118,35,.80)"],"rgb(0238,118,35)",'container_stack2', '',[{data: [5]}, {data: [2]}, {data: [3]}]);
+
+
+    requestData();
+
+});
+
+
+$("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+});
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+/**
+ * Change text color to make it pop. Didnt turn out well so it is not in use.
+ */
+//setInterval(change_text,1000)
+function change_text(){
+    if(para_counter>word_arr_1.length){
+        prev.removeClass('change_color');
+        para_counter=0;
+        prev=0;
+    }
+    if(prev!=0){
+        prev.removeClass('change_color');
+    }
+    $(element_arr_1[para_counter]).addClass('change_color');
+    prev = $(element_arr_1[para_counter]);
+    para_counter++;
+
+}
+
+
+/**
+ * Custom Zoom
+ */
+$("#slider").slider({
+    orientation: "vertical",
+    value:1,
+    min: .80,
+    max: 1.20,
+    step: .01,
+    slide: function( event, ui ) {
+        $(".mybody").css("zoom",ui.value)
+    }
+});
+
+function close_info(){
+    $(".popup").removeClass("display_yes")
+    $(".popup").addClass("display_no")
+}
+
+
+
+var fio_info_1 = ["direct=1","randrepeat=0","ioengine=libaio","runtime=60","size=12G","group_reporting=1","ramp_time=2","rw=randread","bs=4k","rwmixread=100","rwmixwrite=0","numjobs=16","iodepth=16","loops=100"]
+var fio_info_2 = ["direct=1","randrepeat=0","ioengine=libaio","runtime=60","size=12G","group_reporting=1","ramp_time=2","rw=randwrite","bs=4k","rwmixread=0","rwmixwrite=100","numjobs=16","iodepth=16","loops=100"]
+var fio_info_3 = ["direct=1","randrepeat=0","ioengine=libaio","runtime=60","size=12G","group_reporting=1","ramp_time=2","rw=randread","bs=4k","rwmixread=70","rwmixwrite=30","numjobs=16","iodepth=16","loops=100"]
+var fio_info_4 = ["direct=1","randrepeat=0","ioengine=libaio","runtime=60","size=12G","group_reporting=1","ramp_time=2","rw=randwrite","bs=4k","rwmixread=30","rwmixwrite=70","numjobs=16","iodepth=16","loops=100"]
+
+
+
+function open_info(value){
+    $("#fio_info").html("");
+    if(value === "number_1"){
+        $("#fio_info").append("<h3 class='myheadings myfont popup_text' style=''>Random Read: High IOPS</h3>")
+        $("#fio_info").append("<hr>")
+        <!--$("#fio_info").append("<h4 class='myheadings myfont popup_text' style=''>Random 4k Reads</h4>")-->
+        for(i =0; i<fio_info_1.length; i++){
+            $("#fio_info").append("<h4 class='myheadings myfont popup_text'>"+fio_info_1[i]+"</h4>")
+        }
+    }
+    else if(value === "number_2"){
+        $("#fio_info").append("<h3 class='myheadings myfont popup_text' style=''>Random Write: High IOPS</h3>")
+        $("#fio_info").append("<hr>")
+        <!--$("#fio_info").append("<h3 class='myheadings myfont popup_text' style='text-decoration: underline;'>Random 4KB Writes</h3>")-->
+        for(i =0; i<fio_info_2.length; i++){
+            $("#fio_info").append("<h4 class='myheadings myfont popup_text'>"+fio_info_2[i]+"</h4>")
+        }
+    }
+    else if(value === "number_3"){
+        $("#fio_info").append("<h3 class='myheadings myfont popup_text' style=''>Random Read: High BW</h3>")
+        $("#fio_info").append("<hr>")
+        <!--$("#fio_info").append("<h3 class='myheadings myfont popup_text' style='text-decoration: underline;'>Random 128KB Reads</h3>")-->
+        for(i =0; i<fio_info_3.length; i++){
+            $("#fio_info").append("<h4 class='myheadings myfont popup_text'>"+fio_info_3[i]+"</h4>")
+        }
+    }
+    else if(value === "number_4"){
+        $("#fio_info").append("<h3 class='myheadings myfont popup_text' style=''>Random Write: High BW</h3>")
+        $("#fio_info").append("<hr>")
+        <!--$("#fio_info").append("<h3 class='myheadings myfont popup_text' style='text-decoration: underline;'>Random 128KB Writes</h3>")-->
+        for(i =0; i<fio_info_4.length; i++){
+            $("#fio_info").append("<h4 class='myheadings myfont popup_text'>"+fio_info_4[i]+"</h4>")
+        }
+    }
+
+    $(".popup").removeClass("display_no")
+    $(".popup").addClass("display_yes")
+}
+
+</script>
+
+</body>
+</html>
